@@ -1,0 +1,104 @@
+From 328bf555e6c3f7a5a7bf612c4c0b4778db01ded6 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Sun, 13 Sep 2026 12:07:47 +0300
+Subject: [PATCH] Enable contact form email delivery
+
+---
+ docs/contact.html |  5 +++--
+ docs/script.js    | 36 ++++++++++++++++++++++++++++++++----
+ docs/styles.css   |  9 +++++++++
+ 3 files changed, 44 insertions(+), 6 deletions(-)
+
+diff --git a/docs/contact.html b/docs/contact.html
+index d7b647a..157159c 100644
+--- a/docs/contact.html
++++ b/docs/contact.html
+@@ -26,14 +26,15 @@
+         <div class="contact-detail"><span>Telefon</span><a href="tel:+36301234567">+36 30 123 4567</a></div>
+         <div class="contact-detail"><span>Helyszín</span><p>Budapest · Országosan elérhető</p></div>
+       </div>
+-      <form id="contact-form" class="reveal">
++      <form id="contact-form" class="reveal" action="https://formspree.io/f/moeqojoo" method="POST">
++        <input class="form-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+         <div class="form-row">
+           <div class="field"><label for="name">Neved</label><input id="name" name="name" autocomplete="name" required></div>
+           <div class="field"><label for="email">E-mail címed</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+         </div>
+         <div class="field"><label for="subject">Milyen fotózás érdekel?</label><input id="subject" name="subject" placeholder="Portré, esküvő, brand…" required></div>
+         <div class="field"><label for="message">Üzeneted</label><textarea id="message" name="message" placeholder="Időpont, helyszín és minden, amit fontosnak érzel…" required></textarea></div>
+-        <button class="button" type="submit">Üzenet elküldése</button>
++        <button class="button" type="submit"><span class="button-label">Üzenet elküldése</span></button>
+         <p class="form-message" role="status" aria-live="polite"></p>
+       </form>
+     </section>
+diff --git a/docs/script.js b/docs/script.js
+index ad7e4cf..8361b82 100644
+--- a/docs/script.js
++++ b/docs/script.js
+@@ -29,10 +29,38 @@ document.querySelectorAll('.filter').forEach((button) => {
+ 
+ const form = document.querySelector('#contact-form');
+ if (form) {
+-  form.addEventListener('submit', (event) => {
++  form.addEventListener('submit', async (event) => {
+     event.preventDefault();
+-    const name = new FormData(form).get('name');
+-    document.querySelector('.form-message').textContent = `Köszönöm, ${name}! Az üzenetedet az MVP sikeresen fogadta.`;
+-    form.reset();
++
++    const submitButton = form.querySelector('button[type="submit"]');
++    const buttonLabel = submitButton.querySelector('.button-label');
++    const formMessage = form.querySelector('.form-message');
++    const formData = new FormData(form);
++    const name = formData.get('name');
++
++    submitButton.disabled = true;
++    buttonLabel.textContent = 'Küldés…';
++    formMessage.className = 'form-message';
++    formMessage.textContent = '';
++
++    try {
++      const response = await fetch(form.action, {
++        method: 'POST',
++        body: formData,
++        headers: { Accept: 'application/json' }
++      });
++
++      if (!response.ok) throw new Error('A Formspree nem fogadta el az üzenetet.');
++
++      formMessage.classList.add('success');
++      formMessage.textContent = `Köszönöm, ${name}! Az üzeneted sikeresen elküldtük.`;
++      form.reset();
++    } catch (error) {
++      formMessage.classList.add('error');
++      formMessage.textContent = 'Az üzenetet most nem sikerült elküldeni. Kérlek, próbáld újra később!';
++    } finally {
++      submitButton.disabled = false;
++      buttonLabel.textContent = 'Üzenet elküldése';
++    }
+   });
+ }
+diff --git a/docs/styles.css b/docs/styles.css
+index ac7f826..f5c8d5c 100644
+--- a/docs/styles.css
++++ b/docs/styles.css
+@@ -183,7 +183,16 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
+ }
+ .field input:focus, .field textarea:focus { border-color: var(--accent); }
+ .field textarea { min-height: 130px; resize: vertical; }
++.form-honeypot {
++  position: absolute !important;
++  left: -10000px !important;
++  width: 1px !important;
++  height: 1px !important;
++  overflow: hidden !important;
++}
++.button:disabled { opacity: .55; cursor: wait; }
+ .form-message { min-height: 24px; margin-top: 14px; color: var(--accent); }
++.form-message.error { color: #e58a8a; }
+ 
+ footer { display: flex; justify-content: space-between; gap: 20px; padding: 38px clamp(22px, 7vw, 110px); border-top: 1px solid var(--line); color: #777; font-size: .76rem; }
+ .reveal { opacity: 0; transform: translateY(25px); transition: opacity .75s ease, transform .75s ease; }
+-- 
+2.51.1
+
