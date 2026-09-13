@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kapcsolat és fotózási időpontkérés Fekete Áron fotográfushoz.">
+  <title>Elérhetőség — Fekete Áron</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23080808'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23c9a96e' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23c9a96e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Fekete <span>Áron</span></a>
+    <button class="menu-button" aria-label="Menü megnyitása" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Fő navigáció"><a href="index.html">Főoldal</a><a href="portfolio.html">Portfólió</a><a class="active" href="contact.html">Elérhetőség</a></nav>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="eyebrow">Kapcsolat</div><h1>Alkossunk<br><em>együtt.</em></h1>
+      <p>Írd meg röviden, mire készülsz, és 1–2 munkanapon belül válaszolok a lehetőségekkel és az árajánlattal.</p>
+    </section>
+    <section class="section contact-layout">
+      <div class="contact-copy reveal">
+        <h2>Mesélj az<br><em>ötletedről.</em></h2>
+        <p>Portré, esküvő vagy teljes márkaanyag? A legjobb képek egy jó beszélgetéssel kezdődnek.</p>
+        <div class="contact-detail"><span>E-mail</span><a href="mailto:hello@feketearon.hu">hello@feketearon.hu</a></div>
+        <div class="contact-detail"><span>Telefon</span><a href="tel:+36301234567">+36 30 123 4567</a></div>
+        <div class="contact-detail"><span>Helyszín</span><p>Budapest · Országosan elérhető</p></div>
+      </div>
+      <form id="contact-form" class="reveal">
+        <div class="form-row">
+          <div class="field"><label for="name">Neved</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="email">E-mail címed</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="subject">Milyen fotózás érdekel?</label><input id="subject" name="subject" placeholder="Portré, esküvő, brand…" required></div>
+        <div class="field"><label for="message">Üzeneted</label><textarea id="message" name="message" placeholder="Időpont, helyszín és minden, amit fontosnak érzel…" required></textarea></div>
+        <button class="button" type="submit">Üzenet elküldése</button>
+        <p class="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <footer><span>© 2026 Fekete Áron Photography</span><span>Budapest · Magyarország</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>

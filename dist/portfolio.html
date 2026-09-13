@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Válogatás Fekete Áron portré-, esküvő- és brandfotóiból.">
+  <title>Portfólió — Fekete Áron</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23080808'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23c9a96e' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23c9a96e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Fekete <span>Áron</span></a>
+    <button class="menu-button" aria-label="Menü megnyitása" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Fő navigáció"><a href="index.html">Főoldal</a><a class="active" href="portfolio.html">Portfólió</a><a href="contact.html">Elérhetőség</a></nav>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="eyebrow">Válogatás · 2023–2026</div>
+      <h1>A képek<br><em>beszélnek.</em></h1>
+      <p>Portrék, esküvők és márkatörténetek. Minden sorozat más, de a cél ugyanaz: valódi, időtálló képeket készíteni.</p>
+    </section>
+    <section class="section">
+      <div class="filters" aria-label="Portfólió szűrése">
+        <button class="filter active" data-filter="all">Összes</button>
+        <button class="filter" data-filter="portrait">Portré</button>
+        <button class="filter" data-filter="wedding">Esküvő</button>
+        <button class="filter" data-filter="brand">Brand</button>
+      </div>
+      <div class="gallery">
+        <article class="gallery-item reveal" data-category="portrait"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1000&q=85" alt="Portré egy nő arcáról"><div class="gallery-caption"><strong>Lilla</strong><span>Portré · Budapest</span></div></article>
+        <article class="gallery-item reveal" data-category="wedding"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=85" alt="Friss házasok esküvőn"><div class="gallery-caption"><strong>Anna & Márk</strong><span>Esküvő · Etyek</span></div></article>
+        <article class="gallery-item reveal" data-category="brand"><img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?auto=format&fit=crop&w=1000&q=85" alt="Divatfotó városi környezetben"><div class="gallery-caption"><strong>Noir Studio</strong><span>Brand · Budapest</span></div></article>
+        <article class="gallery-item reveal" data-category="portrait"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=85" alt="Férfi portré"><div class="gallery-caption"><strong>Bence</strong><span>Portré · Stúdió</span></div></article>
+        <article class="gallery-item reveal" data-category="wedding"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=85" alt="Esküvői részlet gyűrűkkel"><div class="gallery-caption"><strong>Részletek</strong><span>Esküvő · Balaton</span></div></article>
+        <article class="gallery-item reveal" data-category="brand"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85" alt="Divatmodell fekete ruhában"><div class="gallery-caption"><strong>Atelier 11</strong><span>Kampány · Budapest</span></div></article>
+      </div>
+    </section>
+  </main>
+  <footer><span>© 2026 Fekete Áron Photography</span><span>Budapest · Magyarország</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
